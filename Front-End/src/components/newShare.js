@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { storage } from "../firebase";
 
 class Share extends Component {
   state = {
     placeName: "",
     placeDescription: "",
-    data: []
+    data: [],
+    url: ""
   };
 
   handleSubmit = event => {
@@ -53,7 +55,7 @@ class Share extends Component {
 
   addNewData = () => {
     const { state, addData } = this;
-    const { placeName, placeDescription } = state;
+    const { placeName, placeDescription, url } = state;
     if (
       placeName !== "" &&
       placeName !== null &&
@@ -62,11 +64,46 @@ class Share extends Component {
     ) {
       let newData = {
         placeName: placeName,
-        placeDescription: placeDescription
+        placeDescription: placeDescription,
+        placePhoto: url
       };
       addData(newData);
       // this.setState({ placeName: "", placeDescription: "" });
     }
+  };
+
+  // ================================================================
+
+  handleChange = e => {
+    const image = e.target.files[0];
+    this.setState(() => ({ image }));
+  };
+
+  fileUpload = () => {
+    const { image } = this.state;
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      // snapshot => {
+      //   const progress = Math.round(
+      //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      //   );
+      //   this.setState({ progress });
+      // },
+      // error => {
+      //   console.log(error);
+      // },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            this.setState({ url });
+          });
+      }
+    );
+    console.log("url", image.url);
   };
 
   //==========================ROUTING AND COMPONENTS=============================//
@@ -79,13 +116,35 @@ class Share extends Component {
       addNewData
     } = this;
     const { data, placeName, placeDescription } = state;
+
+    //=======================
+    console.log(this.state.url);
+    const style = {
+      // height: "100vh",
+      // display: "flex",
+      // flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    };
+
+    //======================
     return (
       <div>
-        <form className="form" onSubmit={handleSubmit} style={{border:"solid 0px", width:"50%",padding:"30px", marginLeft:"25%"}}>
+        <form
+          className="form"
+          onSubmit={handleSubmit}
+          style={{
+            border: "solid 0px",
+            width: "50%",
+            padding: "30px",
+            marginLeft: "25%"
+          }}
+        >
           <center>
             <lable class="font-weight-bold">Place name:</lable>
             <input type="text" value={placeName} onChange={handleName} />
-<br/><br/>
+            <br />
+            <br />
             <lable class="font-weight-bold">Description:</lable>
             <textarea
               cols="20"
@@ -93,21 +152,39 @@ class Share extends Component {
               value={placeDescription}
               onChange={handleDescription}
             ></textarea>
-            <br/>
+            <br />
+            <br />
+
+            {/* //////////////////////////////////// */}
+            <div style={style}>
+              {/* <progress value={this.state.progress} max="100" /> */}
+              <input type="file" onChange={this.handleChange} />
+              <button onClick={this.fileUpload}>UPLOAD</button>
+              {/* <br />
+              <img
+                src={this.state.url}
+                alt="Uploaded images"
+                height="300"
+                width="400"
+              /> */}
+            </div>
+            {/* //////////////////////////////// */}
             <button class="btn btn-primary ml-5" onClick={addNewData}>
               Submit
             </button>
           </center>
         </form>
-        <br/>
+        <br />
         {data.map((info, i) => {
           return (
-            <div class="card ml-5" style={{width:"50%", left:"25%",padding:"30px"}}>
-              <div class="card-header">{info.placeName}</div>
+            <div
+              class="card ml-5"
+              style={{ width: "400px",height:"540px",marginTop:"50px", padding: "30px" ,display :"inline-block"}}
+            >
+              <img src={info.placePhoto} class="card-img-top" alt="Sights Photos" style={{width:"338px",height:"338px"}} />
+              <div class="card-header"><strong>Sight Name: </strong>  {info.placeName}</div>
               <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <p>{info.placeDescription}</p>
-                </blockquote>
+                <p class="card-text"><strong>Description: </strong>    {info.placeDescription}</p>
               </div>
             </div>
           );

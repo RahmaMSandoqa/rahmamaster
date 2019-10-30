@@ -28,19 +28,10 @@ let Places = mongoose.model("places", placesSchema);
 let formsSchema = new mongoose.Schema({
   placeName: String,
   placeDescription: String,
-  // placePhoto:String
+  placePhoto:String
 });
 
 let Forms = mongoose.model("forms", formsSchema);
-
-//========================================Schema===============================================//
-let photosSchema = new mongoose.Schema({
-  photo:String
-});
-
-let Photos = mongoose.model("photos", photosSchema);
-
-
 
 //=========================================GET=================================================//
 let getPlaces = callBack => {
@@ -65,16 +56,6 @@ let getForm = callBack => {
   });
 };
 
-let getPhoto = callBack => {
-  console.log("GET PHOTO DATA FROM DATABASE");
-  Photos.find({}, function(err, docs) {
-    if (err) {
-      console.log("ERR:", err);
-    }
-    console.log("DOCS:", docs);
-    callBack(docs);
-  });
-};
 //=====================================GET BY ID===============================================//
 
 let placeById = (callBack, _id) => {
@@ -116,7 +97,7 @@ let addForm = (callBack, obj) => {
       {
         placeName: obj.placeName,
         placeDescription: obj.placeDescription,
-        // placePhoto:obj.placePhoto
+        placePhoto:obj.placePhoto
       }
     ],
     function(err, newData) {
@@ -129,30 +110,11 @@ let addForm = (callBack, obj) => {
   );
 };
 
-let addPhoto = (callBack, obj) => {
-  console.log("INSERT PHOTO TO DATABASE");
-  Photos.insertMany(
-    [
-      {
-        placePhoto:obj.placePhoto
-      }
-    ],
-    function(err, newPhoto) {
-      if (err) {
-        console.log("ERR:", err);
-      }
-      console.log("NEW PHOTO:", newPhoto);
-      getPhoto(callBack);
-    }
-  );
-};
 //=====================================MODULE EXPORTS=============================================//
 module.exports = {
   getPlaces,
   addPlace,
   placeById,
   getForm,
-  addForm,
-  getPhoto,
-  addPhoto
+  addForm
 };

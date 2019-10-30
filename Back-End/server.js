@@ -30,12 +30,6 @@ app.get("/showBlog", (req, res) => {
   });
 });
 
-app.get("/showPhoto", (req, res) => {
-  DB.getPhoto(result => {
-    console.log("CALL BACK FROM SERVER");
-    res.json(result);
-  });
-});
 //===================================GET DATA BY ID==============================================//
 
 app.get("/place/:ID", (req, res) => {
@@ -60,14 +54,7 @@ app.post("/addData", (req, res) => {
   }, inputs);
 });
 
-app.post("/addPhoto", (req, res) => {
-  let inputs=req.body;
-  console.log("BODY:", inputs);
-  DB.addPhoto(result => {
-    console.log("CALL BACK FROM SERVER");
-    res.json(result);
-  }, inputs);
-});
+
 //===================================PORT LISTENING=============================================//
 const PORT = 20000;
 app.listen(PORT, () => console.log(`Server listening to ${PORT}`));
