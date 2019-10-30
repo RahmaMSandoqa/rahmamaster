@@ -29,7 +29,7 @@ const Home = () => (
 
     <div className="container three text-center m-auto">
       <div className="row">
-        <div className="col-4 col-sm-4 ml-5">
+        <div className="col-6 col-sm-6 ml-5">
           <Link to="/showcase">
             <div style={{ width: "18rem", height: "15rem" }}>
               <img
@@ -45,7 +45,7 @@ const Home = () => (
           </Link>
         </div>
         <Link to="/share">
-        <div className="col-4 col-sm-4">
+        <div className="col-6 col-sm-6">
           <div className="" style={{ width: "18rem", height: "15rem" }}>
             <img
               alt="story"
@@ -58,7 +58,7 @@ const Home = () => (
           </div>
         </div>
         </Link>
-        <Link to="/new">
+        {/* <Link to="/new">
         <div className="col-4 col-sm-4">
           <div className="" style={{ width: "18rem", height: "15rem" }}>
             <img
@@ -71,7 +71,7 @@ const Home = () => (
             </div>
           </div>
         </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
     {/* ==========================END : THREE ICONS========================== */}
