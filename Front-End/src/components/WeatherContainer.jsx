@@ -12,7 +12,7 @@ class WeatherContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      city: '',
+      city: "",
       country: "jordan",
       icon: undefined,
       main: undefined,
@@ -70,7 +70,7 @@ class WeatherContainer extends React.Component {
   getWeather = async e => {
     e.preventDefault();
 
-    const {country}=this.state;
+    const { country } = this.state;
     // const country = e.target.elements.country.value;
     const city = this.props.name;
 
@@ -116,4 +116,3 @@ class WeatherContainer extends React.Component {
 }
 
 export default WeatherContainer;
-

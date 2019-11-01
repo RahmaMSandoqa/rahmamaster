@@ -2,16 +2,16 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Map from "./Map";
-import WeatherContainer from './WeatherContainer'
+import WeatherContainer from "./WeatherContainer";
 //==================DESCRIPTION AND MAP CONTAINER=======================//
 class ShowPage extends Component {
-  constructor(){
-    super()
-    this.state={
-      data : []
-    }
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    };
   }
-//===============SLICING ID FROM URL + MOUNTING DATA====================//
+  //===============SLICING ID FROM URL + MOUNTING DATA====================//
   componentDidMount() {
     let id = window.location.pathname.slice(7);
     axios
@@ -24,7 +24,7 @@ class ShowPage extends Component {
         console.log(error);
       });
   }
-//======================================================================//
+  //======================================================================//
   render() {
     const { name, photosUrl, description } = this.state.data;
     return (
@@ -47,8 +47,7 @@ class ShowPage extends Component {
                   <p className="card-text">
                     Description :<br /> {description}
                   </p>
-                  <h3>WEATHER API HERE</h3>
-                  <WeatherContainer name={name}/>
+                  <WeatherContainer name={name} />
                 </div>
               </div>
             </div>
