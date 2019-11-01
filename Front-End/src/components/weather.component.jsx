@@ -16,7 +16,7 @@ const Weather = props => {
         ) : null}
 
         {/* show max and min temp */}
-        {maxminTemp(props.temp_min, props.temp_max)}
+        {/* {maxminTemp(props.temp_min, props.temp_max)} */}
 
         {/* Weather description */}
         <h4 className="py-3">
