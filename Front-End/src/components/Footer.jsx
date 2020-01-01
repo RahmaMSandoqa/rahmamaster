@@ -47,14 +47,14 @@ const Footer = () => (
               <ul className="list-unstyled list-inline social text-center">
                 <li className="list-inline-item">
                   <a href="">
-                    <i style={{ color: "#ffebcd" }} class="fab fa-facebook"></i>
+                    <i style={{ color: "#ffebcd" }} className="fab fa-facebook"></i>
                   </a>
                 </li>
                 <li className="list-inline-item">
                   <a href="">
                     <i
                       style={{ color: "#ffebcd" }}
-                      class="fab fa-twitter-square"
+                      className="fab fa-twitter-square"
                     ></i>
                   </a>
                 </li>
@@ -62,7 +62,7 @@ const Footer = () => (
                   <a href="">
                     <i
                       style={{ color: "#ffebcd" }}
-                      class="fab fa-instagram"
+                      className="fab fa-instagram"
                     ></i>
                   </a>
                 </li>
@@ -70,7 +70,7 @@ const Footer = () => (
                   <a href="">
                     <i
                       style={{ color: "#ffebcd" }}
-                      class="fab fa-google-plus-square"
+                      className="fab fa-google-plus-square"
                     ></i>
                   </a>
                 </li>

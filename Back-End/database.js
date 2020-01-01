@@ -1,6 +1,6 @@
 //======================================Connection=============================================//
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/tourism-places", {
+mongoose.connect("mongodb://localhost/rahma", {
   useNewUrlParser: true
 });
 const db = mongoose.connection;
@@ -32,6 +32,20 @@ let formsSchema = new mongoose.Schema({
 });
 
 let Forms = mongoose.model("forms", formsSchema);
+
+//========================================Schema===============================================//
+
+let contactSchema = new mongoose.Schema({
+Name: String,
+email: String,
+phone:Number,
+message:String
+});
+
+let ContactUs = mongoose.model("contactUs", contactSchema);
+
+//الي جمب الmodel منجيبها من databases نفس الاسم 
+// ولي جمب الlet لازم تكون cabetal
 
 //=========================================GET=================================================//
 let getPlaces = callBack => {
@@ -89,6 +103,18 @@ let addPlace = (callBack, obj) => {
 };
 
 
+let contactUS = (cb, obj) => {
+  ContactUs.create(
+    obj,(err, result)=> {
+    if (err) {
+      console.log("err :", err);
+    }
+    // console.log("docs by id :", result);
+    cb(result);
+  });
+};
+
+
 
 let addForm = (callBack, obj) => {
   console.log("INSERT DATA TO DATABASE");
@@ -116,5 +142,6 @@ module.exports = {
   addPlace,
   placeById,
   getForm,
-  addForm
+  addForm,
+  contactUS 
 };

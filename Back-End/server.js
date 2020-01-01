@@ -54,6 +54,17 @@ app.post("/addData", (req, res) => {
   }, inputs);
 });
 
+app.post("/contactUS", (req, res) => {
+  let all=req.body;
+  console.log("BODY:", all);
+  DB.contactUS(result => {
+    console.log("CALL BACK FROM SERVER");
+    res.json(result);
+  }, all);
+});
+
+
+
 
 //===================================PORT LISTENING=============================================//
 const PORT = 20000;

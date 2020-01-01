@@ -36,15 +36,15 @@ const Home = () => (
         <div className="col-6 col-sm-6">
           <Link to="/showcase" style={{ textDecoration: "none" }}>
             <h1>
-              <i class="far fa-compass twoIcons "></i>
-              <h2 className="twoSent">Places to discover</h2>
+              <i className="far fa-compass twoIcons "></i>
             </h1>
+            <h2 className="twoSent">Places to discover</h2>
           </Link>
         </div>
         <div className="col-6 col-sm-6">
           <Link to="/share" style={{ textDecoration: "none" }}>
             <h1>
-              <i class="far fa-laugh-beam twoIcons "></i>
+              <i className="far fa-laugh-beam twoIcons "></i>
             </h1>
             <h2 className="twoSent">Share your experience in Jordan</h2>
           </Link>

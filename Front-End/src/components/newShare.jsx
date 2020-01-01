@@ -132,7 +132,7 @@ class Share extends Component {
       <div>
         <h1>
           Share the joy{" "}
-          <i style={{ color: "#ffebcd" }} class="far fa-heart"></i>
+          <i style={{ color: "#ffebcd" }} className="far fa-heart"></i>
         </h1>
         <h4>
           Encourage others to visit and discover the places you've loved the
@@ -143,7 +143,7 @@ class Share extends Component {
         {data.map((info, i) => {
           return (
             <div
-              class="card ml-5"
+              className="card ml-5"
               style={{
                 width: "400px",
                 height: "540px",
@@ -154,15 +154,15 @@ class Share extends Component {
             >
               <img
                 src={info.placePhoto}
-                class="card-img-top"
+                className="card-img-top"
                 alt="Sights Photos"
                 style={{ width: "338px", height: "338px" }}
               />
-              <div class="card-header">
+              <div className="card-header">
                 <strong>Sight Name: </strong> {info.placeName}
               </div>
-              <div class="card-body">
-                <p class="card-text">
+              <div className="card-body">
+                <p className="card-text">
                   <strong>Description: </strong> {info.placeDescription}
                 </p>
               </div>
@@ -197,7 +197,7 @@ class Share extends Component {
             <br />
             <br />
             <br />
-            <button type="submit" class="btn btn-warning" onClick={addNewData}>
+            <button type="submit" className="btn btn-warning" onClick={addNewData}>
               Submit
             </button>
           </div>

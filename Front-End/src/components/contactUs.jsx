@@ -1,7 +1,43 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 export default class Contact extends Component {
+  constructor(){
+    super()
+    this.state = {
+      name: null,
+      email: null,
+      phone: null,
+      message: null,
+      warning: null,
+
+    }
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(ev) {
+    const newState = {}
+    newState[ev.target.name] = ev.target.value;
+    this.setState(newState)
+  }
+
+
+contactUS=()=>{
+  // let name= event.target["name"].value
+  // let email= event.target["email"].value
+  // let phone= event.target["phone"].value
+  // let massage= event.target["message"].value
+  // console.log(name,54555555)
+  // let all ={name,email,massage,phone}
+  console.log('contact', this.state)
+  axios.post("http://localhost:20000/contactUS", this.state)
+  .then(res=>{
+    console.log(res.data)
+  })
+  
+}
+
   render() {
     return (
       <div
@@ -17,64 +53,75 @@ export default class Contact extends Component {
         <div className={this.style.sectionContent}></div>
         <div className={this.style.contactSection}>
           <div className="container">
-            <div class="row">
+            <div className="row">
               <form className="col-md-6 offset-md-3  mt-5">
                 <h1 className={this.style.contentHeader}>
                   <b>Contact us</b>
                 </h1>
-                <div class="mb-5"></div>
+                <div className="mb-5"></div>
 
-                <div class=" form-line">
-                  <div class="form-group">
-                    <label for="exampleInputUsername">
+                <div className=" form-line">
+                  <div className="form-group">
+                    <label htmlFor="exampleInputUsername">
                       <b>Your name</b>
                     </label>
-                    <input
+                    <input 
+                      name="name"
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id=""
                       placeholder=" Enter Name"
+                      onChange={this.onChange}
                     />
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputEmail">
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail">
                       <b>Email Address</b>
                     </label>
                     <input
+                      name="email"
                       type="email"
-                      class="form-control"
-                      id="exampleInputEmail"
+                      className="form-control"
+                      // id="exampleInputEmail"
                       placeholder=" Enter Email"
+                      onChange={this.onChange}
+                      multiple
                     />
                   </div>
-                  <div class="form-group">
-                    <label for="telephone">
+                  <div className="form-group">
+                    <label htmlFor="telephone">
                       <b>Mobile</b>{" "}
                     </label>
                     <input
+                      name ="phone"
                       type="tel"
-                      class="form-control"
+                      className="form-control"
                       id="telephone"
                       placeholder="number"
+                      onChange={this.onChange}
                     />
                   </div>
                 </div>
-                <div class="">
-                  <div class="form-group">
-                    <label for="description">
+                <div className="">
+                  <div className="form-group">
+                    <label htmlFor="description">
                       {" "}
                       <b>Message</b>
                     </label>
                     <textarea
-                      class="form-control"
+                      // minlength="4" 
+                      // maxlength="8"
+                      name ="message"
+                      className="form-control"
                       id="description"
                       placeholder="Enter Your Message"
+                      onChange={this.onChange}
                     ></textarea>
                   </div>
                   <div>
-                    <button type="button" class="btn btn-info">
-                      <i class="fa fa-paper-plane" aria-hidden="true"></i> Send
+                    <button type="button" className="btn btn-info" onClick={this.contactUS}>
+                      <i className="fa fa-paper-plane" aria-hidden="true"></i> Send
                       Message
                     </button>
                   </div>
